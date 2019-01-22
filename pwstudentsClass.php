@@ -41,7 +41,7 @@ class pwstudentsClass extends ObjectModel
     {
         $cacheId = 'pwstudentsClass::getTopStudent' . (int) Context::getContext()->language->id;
         if (!Cache::isStored($cacheId)) {
-            $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('SELECT * FROM `'._DB_PREFIX_.''.self::$definition['table'].'` ORDER BY average_ball DESC LIMT 1');
+            $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('SELECT * FROM `'._DB_PREFIX_.''.self::$definition['table'].'` ORDER BY average_ball DESC LIMIT 1');
             Cache::store($cacheId, $result);
 
             return $result;
@@ -55,7 +55,7 @@ class pwstudentsClass extends ObjectModel
 
         $cacheId = 'pwstudentsClass::getBestBall' . (int) Context::getContext()->language->id;
         if (!Cache::isStored($cacheId)) {
-            $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('SELECT average_ball FROM `'._DB_PREFIX_.''.self::$definition['table'].'` ORDER BY average_ball DESC LIMT 1');
+            $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('SELECT average_ball FROM `'._DB_PREFIX_.''.self::$definition['table'].'` ORDER BY average_ball DESC LIMIT 1');
             Cache::store($cacheId, $result);
 
             return $result;
